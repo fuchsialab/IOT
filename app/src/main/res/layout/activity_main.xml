@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DFF1FF"
+    tools:context=".MainActivity">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="5dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:id="@+id/normal"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="Gas Presence"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    <ScrollView
+
+        android:layout_below="@+id/notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/image"
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/frame1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="5dp"
+                android:layout_centerHorizontal="true"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/aaa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ProgressBar
+
+                            android:id="@+id/progress_bar1"
+                            style="@style/CircularDeterminateProgressBar"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_centerInParent="true"
+                            android:indeterminateOnly="false"
+                            android:progress="00"
+                            android:progressDrawable="@drawable/circle"
+                            android:rotation="-90"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:progress="60" />
+
+                        <TextView
+
+                            android:textColor="@color/black"
+                            android:id="@+id/text_view_progress1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="100dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/progress_bar1"
+                            app:layout_constraintEnd_toEndOf="@+id/progress_bar1"
+                            app:layout_constraintStart_toStartOf="@+id/progress_bar1"
+                            app:layout_constraintTop_toTopOf="@+id/progress_bar1"
+                            tools:text="00%" />
+
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:textColor="@color/purple_500"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="132dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:text="Temperature"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+
+            <androidx.cardview.widget.CardView
+
+                android:layout_below="@+id/frame1"
+                android:id="@+id/frame2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="5dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/bbb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ProgressBar
+
+                            android:id="@+id/progress_bar2"
+                            style="@style/CircularDeterminateProgressBar"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_centerInParent="true"
+                            android:indeterminateOnly="false"
+                            android:progress="00"
+                            android:progressDrawable="@drawable/circle"
+                            android:rotation="-90"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:progress="60" />
+
+                        <TextView
+                            android:id="@+id/text_view_progress2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="100dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textColor="@color/black"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/progress_bar2"
+                            app:layout_constraintEnd_toEndOf="@+id/progress_bar2"
+                            app:layout_constraintStart_toStartOf="@+id/progress_bar2"
+                            app:layout_constraintTop_toTopOf="@+id/progress_bar2"
+                            tools:text="00%" />
+
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:textColor="@color/purple_500"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="132dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:text="Humidity"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@+id/frame2"
+                android:id="@+id/frame3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="5dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="10dp">
+
+
+                <RelativeLayout
+                    android:id="@+id/regc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+
+                        android:id="@+id/ccc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ProgressBar
+
+                            android:id="@+id/progress_bar3"
+                            style="@style/CircularDeterminateProgressBar"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_centerInParent="true"
+                            android:indeterminateOnly="false"
+                            android:progress="00"
+                            android:progressDrawable="@drawable/circle"
+                            android:rotation="-90"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:progress="60" />
+
+                        <TextView
+                            android:textColor="@color/black"
+                            android:id="@+id/text_view_progress3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="100dp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@+id/progress_bar3"
+                            app:layout_constraintEnd_toEndOf="@+id/progress_bar3"
+                            app:layout_constraintStart_toStartOf="@+id/progress_bar3"
+                            app:layout_constraintTop_toTopOf="@+id/progress_bar3"
+                            tools:text="00%" />
+
+
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:textColor="@color/purple_500"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="132dp"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:text="Gas Presence"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+
+    <ImageView
+
+        android:id="@+id/mute"
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/mute"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/unmute"
+        android:layout_marginBottom="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/unmute"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "79090560409",
+    "firebase_url": "https://iotweather-f233f-default-rtdb.firebaseio.com",
+    "project_id": "iotweather-f233f",
+    "storage_bucket": "iotweather-f233f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79090560409:android:ae81d3d11fa9c1c6d0f708",
+        "android_client_info": {
+          "package_name": "com.example.atmdevice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79090560409-6hi4inl7o309n187tos3drh66nk4a4qh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPoZ1-KqjkVZ6U2F5bSdx5nIFKAoa31Zo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79090560409-6hi4inl7o309n187tos3drh66nk4a4qh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
