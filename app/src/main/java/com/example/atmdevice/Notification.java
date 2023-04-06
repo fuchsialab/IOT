@@ -1,10 +1,22 @@
 package com.example.atmdevice;
 
 
+import static android.app.AlarmManager.ELAPSED_REALTIME;
+import static android.os.SystemClock.elapsedRealtime;
+
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.SystemClock;
+import android.view.View;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +35,8 @@ public class Notification extends Service {
     MediaPlayer mp;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference mRef= firebaseDatabase.getReference();
+    public static final String SHARED_PREFS = "sharedPrefs";
+
 
     @Nullable
     @Override
@@ -38,11 +52,15 @@ public class Notification extends Service {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                Boolean sw = sharedPreferences.getBoolean("bl",false);
+
+
 
                 if (snapshot.exists()) {
 
                     Map map = (Map) snapshot.getValue();
-
                     Integer temp = Integer.valueOf(map.get("temperature").toString());
                     Integer hum = Integer.valueOf(map.get("humidity").toString());
                     Integer gas = Integer.valueOf(map.get("gas").toString());
@@ -50,23 +68,31 @@ public class Notification extends Service {
 
                     if(gas > 800 || temp > 32 || temp < 25 || hum > 60 || hum < 40){
 
-                        if(mp == null) {
-                            mp = MediaPlayer.create(Notification.this, R.raw.alarm);
+
+                        if (sw.equals(false)){
+
+                            if(mp == null) {
+                                mp = MediaPlayer.create(Notification.this, R.raw.alarm);
+
+                            }
+
+                            if(!mp.isPlaying()){
+                                mp.start();
+                                mp.setLooping(true);
+
+                            }
+
+
+                        }else{
+
 
                         }
 
-                        if(!mp.isPlaying()){
-                            mp.start();
-                            mp.setLooping(true);
-                            Toast.makeText(Notification.this, "Alarm.", Toast.LENGTH_SHORT).show();
 
-                        }
                     }
                     else if(mp != null) {
                         mp.stop();
                         mp = null;
-                        Toast.makeText(Notification.this, "normal.", Toast.LENGTH_SHORT).show();
-
 
                     }
 
@@ -86,5 +112,14 @@ public class Notification extends Service {
 
     }
 
+    @Override
+    public void onDestroy() {
+
+        if(mp != null) {
+            mp.stop();
+            mp = null;
+        }
+
+    }
 
 }
