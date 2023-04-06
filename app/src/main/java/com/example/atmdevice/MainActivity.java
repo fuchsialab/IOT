@@ -4,24 +4,26 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.Provider;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,12 +31,16 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar1,progressBar2, progressBar3;
     TextView textView1, textView2, textView3, normal;
     ImageView im1, im2;
-
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    Switch switch1;
     int gas_status, temp_status, hum_status;
 
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference mRef;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -46,11 +52,61 @@ public class MainActivity extends AppCompatActivity {
         textView1 = findViewById(R.id.text_view_progress1);
         textView2 = findViewById(R.id.text_view_progress2);
         textView3 = findViewById(R.id.text_view_progress3);
+        switch1 = findViewById(R.id.sw);
+
 
         im1 = findViewById(R.id.mute);
         im2 = findViewById(R.id.unmute);
         im1.setVisibility(View.GONE);
-        im2.setVisibility(View.GONE);
+        im2.setVisibility(View.VISIBLE);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Boolean sw = sharedPreferences.getBoolean("bl",false);
+
+
+        if (sw.equals(true)){
+
+            switch1.setChecked(true);
+            im1.setVisibility(View.VISIBLE);
+            im2.setVisibility(View.GONE);
+            Toast.makeText(MainActivity.this, "Alarm Muted Mode Activated", Toast.LENGTH_SHORT).show();
+
+        }else{
+
+            editor.clear();
+            editor.apply();
+            im1.setVisibility(View.GONE);
+            im2.setVisibility(View.VISIBLE);
+            startService(new Intent(MainActivity.this,Notification.class));
+            Toast.makeText(MainActivity.this, "Alarm Mode Activated", Toast.LENGTH_SHORT).show();
+
+        }
+
+        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+
+                    editor.putBoolean("bl", switch1.isChecked());
+                    editor.apply();
+                    im1.setVisibility(View.VISIBLE);
+                    im2.setVisibility(View.GONE);
+                    stopService(new Intent(MainActivity.this,Notification.class));
+                    Toast.makeText(MainActivity.this, "Alarm Mode Deactivated", Toast.LENGTH_SHORT).show();
+                }
+                  else {
+
+                    editor.clear();
+                    editor.apply();
+                    im1.setVisibility(View.GONE);
+                    im2.setVisibility(View.VISIBLE);
+                    startService(new Intent(MainActivity.this,Notification.class));
+                    Toast.makeText(MainActivity.this, "Alarm Mode Activated", Toast.LENGTH_SHORT).show();
+
+
+                }
+            }
+        });
 
         normal = findViewById(R.id.normal);
 
@@ -65,8 +121,6 @@ public class MainActivity extends AppCompatActivity {
         mRef = firebaseDatabase.getReference();
 
         getdata();
-
-        startService(new Intent(this,Notification.class));
 
 
     }
@@ -100,18 +154,17 @@ public class MainActivity extends AppCompatActivity {
                     progressBar3.setProgress(val_b);
                     textView3.setText(String.valueOf(val_b));
 
+                    normal.setVisibility(View.VISIBLE);
+
                     if(gas > 800 || temp > 32 || temp < 25 || hum > 60 || hum < 40){
 
-                        normal.setVisibility(View.VISIBLE);
                         normal.setText("Danger! Room's environment is not normal.");
-                        normal.setTextColor(Color.RED);
 
                     }else {
-                        normal.setVisibility(View.VISIBLE);
                         normal.setText("Room's environment is normal.");
-                        normal.setTextColor(Color.RED);
 
                     }
+                    normal.setTextColor(Color.RED);
 
                 }
 
