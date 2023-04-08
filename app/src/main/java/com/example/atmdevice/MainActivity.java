@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
             switch1.setChecked(true);
             im1.setVisibility(View.VISIBLE);
             im2.setVisibility(View.GONE);
-            stopService(new Intent(MainActivity.this,Notification.class));
-            Toast.makeText(MainActivity.this, "Alarm Muted Mode Activated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "Alarm Mode Deactivated", Toast.LENGTH_SHORT).show();
 
         }else{
 

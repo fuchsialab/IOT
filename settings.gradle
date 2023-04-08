@@ -15,5 +15,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "ATM Device"
+rootProject.name = "ATM Monitor"
 include ':app'
