@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DFF1FF"
+    android:background="#E6E6E6"
     tools:context=".MainActivity">
 
 
@@ -31,7 +31,7 @@
                     android:id="@+id/normal"
                     android:layout_marginBottom="2dp"
                     android:layout_marginTop="2dp"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
@@ -57,8 +57,88 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/spo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginBottom="5dp"
+                android:layout_centerHorizontal="true"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp">
+
+                    <LinearLayout
+                        android:id="@+id/linspo2"
+                        android:layout_marginTop="2dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Oxygen saturation Level: "
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        </TextView>
+
+                        <TextView
+                            android:textColor="#009688"
+                            android:id="@+id/spo2percentage"
+                            android:text="00"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        </TextView>
+
+                        <TextView
+                            android:text=" %"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/spo2message"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/linspo2"
+                        android:textSize="18sp"
+                        android:textColor="#F44336"
+                        android:text="May be patient "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <Button
+                        android:id="@+id/spo2btn"
+                        android:textColor="#000000"
+                        android:text="Clear Last Warning "
+                        android:layout_below="@+id/spo2message"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </Button>
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
 
             <androidx.cardview.widget.CardView
+                android:layout_below="@+id/spo2"
                 android:id="@+id/frame1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,8 +163,8 @@
 
                             android:id="@+id/progress_bar1"
                             style="@style/CircularDeterminateProgressBar"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
                             android:layout_centerInParent="true"
                             android:indeterminateOnly="false"
                             android:progress="00"
@@ -98,14 +178,14 @@
 
                         <TextView
 
-                            android:textColor="@color/black"
                             android:id="@+id/text_view_progress1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:layout_marginBottom="100dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                            android:textSize="30sp"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/progress_bar1"
                             app:layout_constraintEnd_toEndOf="@+id/progress_bar1"
@@ -120,7 +200,7 @@
                     <TextView
                         android:textColor="@color/purple_500"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginTop="132dp"
+                        android:layout_marginTop="115dp"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:text="Temperature"
@@ -131,8 +211,6 @@
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
-
-
 
 
 
@@ -162,8 +240,8 @@
 
                             android:id="@+id/progress_bar2"
                             style="@style/CircularDeterminateProgressBar"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
                             android:layout_centerInParent="true"
                             android:indeterminateOnly="false"
                             android:progress="00"
@@ -183,7 +261,7 @@
                             android:layout_marginBottom="100dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             android:textColor="@color/black"
-                            android:textSize="30sp"
+                            android:textSize="20sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/progress_bar2"
                             app:layout_constraintEnd_toEndOf="@+id/progress_bar2"
@@ -198,7 +276,7 @@
                     <TextView
                         android:textColor="@color/purple_500"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginTop="132dp"
+                        android:layout_marginTop="115dp"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:text="Humidity"
@@ -239,8 +317,8 @@
 
                             android:id="@+id/progress_bar3"
                             style="@style/CircularDeterminateProgressBar"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
                             android:layout_centerInParent="true"
                             android:indeterminateOnly="false"
                             android:progress="00"
@@ -253,14 +331,14 @@
                             tools:progress="60" />
 
                         <TextView
-                            android:textColor="@color/black"
                             android:id="@+id/text_view_progress3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:layout_marginBottom="100dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                            android:textSize="30sp"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/progress_bar3"
                             app:layout_constraintEnd_toEndOf="@+id/progress_bar3"
@@ -276,10 +354,10 @@
                     <TextView
                         android:textColor="@color/purple_500"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginTop="132dp"
+                        android:layout_marginTop="115dp"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:text="Gas Presence"
+                        android:text="Gas Presence in ppm"
                         android:layout_centerHorizontal="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -289,8 +367,9 @@
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
+                android:layout_below="@+id/frame3"
                 android:gravity="center_horizontal"
-                android:layout_marginTop="550dp"
+                android:layout_marginTop="5dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_width="match_parent"
@@ -316,13 +395,22 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"/>
 
+                <Button
+                    android:textColor="#000000"
+                    android:id="@+id/calib"
+                    android:text="Calibration"
+                    android:layout_marginStart="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
+                </Button>
 
             </LinearLayout>
 
 
-        </RelativeLayout>
 
+
+        </RelativeLayout>
 
 
     </ScrollView>
