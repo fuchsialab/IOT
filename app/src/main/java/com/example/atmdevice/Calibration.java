@@ -24,9 +24,9 @@ import java.util.Map;
 
 public class Calibration extends AppCompatActivity {
 
-    EditText tempmax, tempmin, hummax, hummin, gasmax, gasmin;
-    Button temp, hum, gas;
-    DatabaseReference rootRef, tmaxRef, tminRef, hmaxRef, hminRef, gmaxRef, gminRef;
+    EditText tempmax, tempmin, hummax, hummin, gasmax, gasmin, bpmMax, spo2min;
+    Button temp, hum, gas, spo;
+    DatabaseReference rootRef, tmaxRef, tminRef, hmaxRef, hminRef, gmaxRef, gminRef, bpmRef, spoRef;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference mRef;
@@ -47,10 +47,13 @@ public class Calibration extends AppCompatActivity {
         hummin = findViewById(R.id.hummin);
         gasmax = findViewById(R.id.gasmax);
         gasmin = findViewById(R.id.gasmin);
+        bpmMax = findViewById(R.id.bpmmax);
+        spo2min = findViewById(R.id.spomin);
 
         temp = findViewById(R.id.calibtemp);
         hum = findViewById(R.id.calibhum);
         gas = findViewById(R.id.calibgas);
+        spo = findViewById(R.id.calibspo);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -63,6 +66,22 @@ public class Calibration extends AppCompatActivity {
 
         gmaxRef = rootRef.child("gasmax");
         gminRef = rootRef.child("gasmin");
+
+        bpmRef = rootRef.child("bpmmax");
+        spoRef = rootRef.child("spo2min");
+
+        spo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Float bpmmax = Float.valueOf(bpmMax.getText().toString());
+                Float spomin = Float.valueOf(spo2min.getText().toString());
+
+                bpmRef.setValue(bpmmax);
+                spoRef.setValue(spomin);
+
+            }
+        });
 
         temp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +131,9 @@ public class Calibration extends AppCompatActivity {
 
                     Map map = (Map) snapshot.getValue();
 
+                    Float bpmmax = Float.valueOf(map.get("bpmmax").toString());
+                    Float spo2m = Float.valueOf(map.get("spo2min").toString());
+
                     Float tmax = Float.valueOf(map.get("tempmax").toString());
                     Float hmax = Float.valueOf(map.get("hummax").toString());
                     Integer gmax = Integer.valueOf(map.get("gasmax").toString());
@@ -129,6 +151,9 @@ public class Calibration extends AppCompatActivity {
 
                     gasmax.setText(String.valueOf(gmax));
                     gasmin.setText(String.valueOf(gmin));
+
+                    bpmMax.setText(String.valueOf(bpmmax));
+                    spo2min.setText(String.valueOf(spo2m));
 
 
                 }

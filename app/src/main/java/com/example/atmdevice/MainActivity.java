@@ -30,13 +30,13 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     ProgressBar progressBar1, progressBar2, progressBar3;
-    TextView textView1, textView2, textView3, normal, spo2percentage, spo2message;
+    TextView textView1, textView2, textView3, normal, spo2percentage, spo2message, bpmCount;
     ImageView im1, im2;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch switch1;
     Button btn, spo2btn;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference mRef, alart, spo2ref;
+    DatabaseReference mRef, alart, spo2ref, bmmRef;
 
     public static final String SHARED_PREFS = "sharedPrefs";
     int a = 0;
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         switch1 = findViewById(R.id.sw);
 
         spo2percentage = findViewById(R.id.spo2percentage);
+        bpmCount = findViewById(R.id.bpm);
         spo2message = findViewById(R.id.spo2message);
         spo2btn = findViewById(R.id.spo2btn);
 
@@ -139,11 +140,13 @@ public class MainActivity extends AppCompatActivity {
         alart = mRef.child("buttonalarm");
 
         spo2ref = mRef.child("spo2");
+        bmmRef = mRef.child("bpm");
         spo2btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 spo2ref.setValue(0);
+                bmmRef.setValue(0);
 
             }
         });
@@ -161,14 +164,16 @@ public class MainActivity extends AppCompatActivity {
 
                     Map map = (Map) snapshot.getValue();
 
-                    Float spo2 = Float.valueOf(map.get("spo2").toString());
+                    int spo2 = Integer.valueOf(map.get("spo2").toString());
+                    int bpm = Integer.valueOf(map.get("bpm").toString());
                     spo2percentage.setText(String.valueOf(spo2));
+                    bpmCount.setText(String.valueOf(bpm));
 
-                    if(spo2 >=94){
+                    if(spo2 >=93 && bpm>50 && bpm<80 ){
                         spo2message.setText("Asthma attack : No risk");
-                    } else if (spo2 >=90 && spo2 <=93 ) {
+                    } else if (spo2 >=90 && spo2 <93 && bpm>79 && bpm<110) {
                         spo2message.setText("Asthma attack : Medium risk");
-                    } else if (spo2 <89 && spo2>0 ) {
+                    } else if (spo2 <89 && spo2>0 && bpm>110) {
                         spo2message.setText("Asthma attack : High risk");
                     }else {
                         spo2message.setText("Please do a test");

@@ -28,11 +28,6 @@ import java.util.Map;
 
 public class Notification extends Service {
 
-    private String TAG = "BroadcastService";
-    public static final String COUNTDOWN_BR = "com.example.backgoundtimercount";
-    Intent intent = new Intent(COUNTDOWN_BR);
-    CountDownTimer countDownTimer = null;
-    SharedPreferences sharedPreferences;
     MediaPlayer mp, np;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference mRef= firebaseDatabase.getReference();
@@ -62,6 +57,10 @@ public class Notification extends Service {
                     Map map = (Map) snapshot.getValue();
 
                     Float spo2 = Float.valueOf(map.get("spo2").toString());
+                    Float bpm = Float.valueOf(map.get("bpm").toString());
+                    Float spo2min = Float.valueOf(map.get("spo2min").toString());
+                    Float bpmmax = Float.valueOf(map.get("bpmmax").toString());
+
 
                     Float temp = Float.valueOf(map.get("temperature").toString());
                     Float hum = Float.valueOf(map.get("humidity").toString());
@@ -95,7 +94,7 @@ public class Notification extends Service {
 
                     }
 
-                    if(gas > gmax || gas < gmin|| temp > tmax || temp < tmin || hum > hmax || hum < hmin || (spo2<94 && spo2>0) ){
+                    if(gas > gmax || gas < gmin|| temp > tmax || temp < tmin || hum > hmax || hum < hmin || ((spo2<spo2min && spo2>0) && (bpm>bpmmax) )){
 
                         if (sw.equals(false)){
 
